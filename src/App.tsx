@@ -1,16 +1,15 @@
 import React, { useState } from "react";
+import "./App.css";
 import { fetchQuestions } from "./Services/API";
 import QuestionCard from "./Components/QuestionCard";
 import { Difficulty, QuestionState, AnsObject } from "./Services/Utility";
-import { totalmem } from "os";
-
 const App: React.FC = () => {
-  const [loding, setLoding] = useState(false);
+  const [loding, setLoding] = useState<boolean>(false);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState<number>(0);
   const [userAnswer, setUserAnswer] = useState<AnsObject[]>([]);
-  const [score, setScore] = useState(0);
-  const [gameOver, setGameOver] = useState(true);
+  const [score, setScore] = useState<number>(0);
+  const [gameOver, setGameOver] = useState<boolean>(true);
 
   const TotalQuestions: number = 10;
 
@@ -27,10 +26,10 @@ const App: React.FC = () => {
     setLoding(false);
   };
 
-  const checkAnswer = (e:any) => {
+  const checkAnswer = (e: any) => {
     if (!gameOver) {
       const answer = e.currentTarget.value;
-      console.log(answer);
+      // console.log(answer);
       const correct = questions[number].correct_answer === answer;
       if (correct) setScore((prev) => prev + 1);
 
@@ -58,18 +57,20 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="App">
-      <h1>Quiz_App</h1>
+    <div className="wrap">
+      <h1>Quiz_Application</h1>
       {gameOver || userAnswer.length === TotalQuestions ? (
-        <button onClick={start} className="start">
-          Start Quiz{" "}
-        </button>
+        <div >
+          <button className="next" onClick={start}>
+            Start Quiz
+          </button>
+        </div>
       ) : null}
 
       {loding && <p>Londing...</p>}
 
-      {!gameOver ? <p className="score">Score:{score}</p> : null}
-      {!loding && !gameOver && (
+      {!gameOver && !loding ? <p className="score">Score:{score}</p> : null}
+      {!loding && !gameOver && number !== TotalQuestions && (
         <QuestionCard
           questionNr={number + 1}
           totalQues={TotalQuestions}
@@ -79,14 +80,17 @@ const App: React.FC = () => {
           userAns={userAnswer ? userAnswer[number] : undefined}
         />
       )}
+
       {!gameOver &&
       !loding &&
       userAnswer.length === number + 1 &&
       number !== TotalQuestions - 1 ? (
-        <button onClick={nextQuestion} className="next">
-          {" "}
-          Next
-        </button>
+        <div >
+          <button onClick={nextQuestion} className="next">
+            {" "}
+            Next
+          </button>
+        </div>
       ) : null}
     </div>
   );

@@ -1,0 +1,25 @@
+body{
+    background-image: linear-gradient( lightblue , white);
+    background-repeat: no-repeat; 
+  }
+
+.wrap{
+    max-width: 800px;
+    min-width: 200px;
+    max-height: 600px;
+    margin: 0 auto;
+    text-align: center; 
+    border-style: solid;
+    margin-top: 40px;
+    box-shadow: 10px 5px 10px gray;
+    padding: 20px;
+}
+
+.next{
+    padding: 5px 10px;
+    font-size: 20px;
+    margin:8px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px  gray;
+
+}

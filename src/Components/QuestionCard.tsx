@@ -1,4 +1,5 @@
 import React from "react";
+import './Card.css'
 import { AnsObject } from "../Services/Utility";
 type props = {
   question: string;
@@ -22,7 +23,7 @@ const QuestionCard: React.FC<props> = ({
       <p>
         Question : {questionNr} / {totalQues}
       </p>
-      <div>{question}</div>
+      <div className='ques'> Q : {question}</div>
       <div>
         {/* <form onSubmit={callback}>
           {answers.map((option: string, ind: number) => {
@@ -38,10 +39,10 @@ const QuestionCard: React.FC<props> = ({
           })}
           <input type="submit" />
         </form> */}
-        {answers.map((answer) => (
-          <div>
-            <button disabled={userAns ? true : false} value={answer} onClick={callback}>
-              <span dangerouslySetInnerHTML={{ __html: answer }} />
+        {answers.map((answer,i) => (
+          <div key={i}>
+            <button className='option' disabled={userAns ? true : false} value={answer} onClick={callback}>
+             {i+1} .  <span dangerouslySetInnerHTML={{ __html: answer }} />
             </button>
           </div>
         ))}

@@ -1,0 +1,15 @@
+.ques{
+    font-size: 20px;
+    padding: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    
+}
+
+.option{
+    font-size: 15px;
+    padding: 5px;
+    margin:5px;
+    display: flex;
+    
+}

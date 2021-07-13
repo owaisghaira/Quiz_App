@@ -1,4 +1,3 @@
-import { type } from "os";
 
 export enum Difficulty {
   EASY = "easy",
